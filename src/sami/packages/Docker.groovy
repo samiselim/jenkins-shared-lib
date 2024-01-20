@@ -16,7 +16,7 @@ class Docker implements Serializable{
 
     def buildDockerImage(String imageName){
         script.echo "building the docker image..."
-        script.sh "docker build -t ${imageName}:${script.IMAGE_VERSION} ."
+        script.sh "docker build -t ${script.USER}/${imageName}:${script.IMAGE_VERSION} ."
     }
 
     def dockerPush(String imageName) {
