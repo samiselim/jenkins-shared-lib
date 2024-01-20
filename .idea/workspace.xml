@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05fbab33-73fe-46c4-9cb7-30b50fc5525f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vars/dockerLogin.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vars/dockerPush.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vars/githubAddAllChanges.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vars/githubCommitAllChanges.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vars/githubLogin.groovy" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vars/githubPush.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sami/packages/Docker.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/sami/packages/Docker.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/buildImage.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/dockerBuildImage.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/commitChanges.groovy" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
