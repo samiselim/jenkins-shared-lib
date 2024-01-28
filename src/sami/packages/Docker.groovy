@@ -16,11 +16,11 @@ def dockerLogin(String dockerHubCred) {
         if (name == "secret-reg") {
             script.sh 'echo secret-reg already found .. '
         } else {
-            script.sh '''echo creating secret-reg secret for K8s with dockerHub
-                kubectl create secret docker-registry secret-reg \
-                --docker-server=docker.io \
-                --docker-username=samiselim \
-                --docker-password=${script.USER}'''
+            script.sh "echo creating secret-reg secret for K8s with dockerHub"
+            script.sh "kubectl create secret docker-registry secret-reg \
+            --docker-server=docker.io \
+            --docker-username=samiselim \
+            --docker-password=${script.USER}"
         }
     }
 }
