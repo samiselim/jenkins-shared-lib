@@ -11,10 +11,10 @@ class Docker implements Serializable{
     def dockerLogin(String dockerHubCred){
         script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]){
             script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
-                sh "kubectl create secret docker-registry SR \
-                --docker-server=docker.io \
-                --docker-username=samiselim \
-                --docker-password=${script.USER}"
+            script.sh "kubectl create secret docker-registry SR \
+            --docker-server=docker.io \
+            --docker-username=samiselim \
+            --docker-password=${script.USER}"
         }
 
     }
