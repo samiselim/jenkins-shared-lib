@@ -7,23 +7,22 @@ class Docker implements Serializable{
     Docker(script){
          this.script = script
     }
-    def dockerLogin(String dockerHubCred){
-        script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]){
-            script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
-            def name = script.sh "kubectl get secret | grep secret-reg | awk '{print $1}'"
-            if(name == 'secret-reg'){
-                script.sh "echo secret-reg alread found .. "
-            }else{
-                script.sh "echo creating secret-reg secret for K8s with dockerHub"
-                script.sh "kubectl create secret docker-registry secret-reg \
+def dockerLogin(String dockerHubCred) {
+    script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+        def name = script.sh(script: 'kubectl get secret | grep secret-reg | awk \'{print $1}\'', returnStatus: true, scriptBlock: '')
+        name = name.trim()
+
+        if (name == 'secret-reg') {
+            script.sh 'echo secret-reg already found .. '
+        } else {
+            script.sh '''echo creating secret-reg secret for K8s with dockerHub
+                kubectl create secret docker-registry secret-reg \
                 --docker-server=docker.io \
                 --docker-username=samiselim \
-                --docker-password=${script.USER}"
-            }
-
+                --docker-password=${script.USER}'''
         }
-
     }
+}
 
     def buildDockerImage(String imageName){
         script.echo "building the docker image..."
