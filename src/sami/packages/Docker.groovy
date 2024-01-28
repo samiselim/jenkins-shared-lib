@@ -12,7 +12,7 @@ def dockerLogin(String dockerHubCred) {
         def name = script.sh(script: 'kubectl get secret | grep secret-reg | awk \'{print $1}\'', returnStdout: true).trim()
         
         script.sh "echo $name"
-        script.sh "echo ${script.USER}********************************************"
+        
         if (name == "secret-reg") {
             script.sh 'echo secret-reg already found .. '
         } else {
@@ -20,7 +20,7 @@ def dockerLogin(String dockerHubCred) {
             script.sh "kubectl create secret docker-registry secret-reg \
             --docker-server=docker.io \
             --docker-username=samiselim \
-            --docker-password=${script.USER}"
+            --docker-password=${script.PASS}"
         }
     }
 }
