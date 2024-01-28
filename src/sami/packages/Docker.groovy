@@ -12,7 +12,7 @@ def dockerLogin(String dockerHubCred) {
         def name = script.sh(script: 'kubectl get secret | grep secret-reg | awk \'{print $1}\'', returnStdout: true).trim()
         
         script.sh "echo $name"
-
+        script.sh "echo ${script.USER}********************************************"
         if (name == "secret-reg") {
             script.sh 'echo secret-reg already found .. '
         } else {
