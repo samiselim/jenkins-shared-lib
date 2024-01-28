@@ -9,13 +9,10 @@ class Docker implements Serializable{
     }
 
     def dockerLogin(String dockerHubCred){
-        def xcred = [:]
         script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]){
             script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
-            xcred['PASS'] = script.PASS
-            xcred['USER'] = script.USER
         }
-        return xcred
+
     }
 
     def buildDockerImage(String imageName){
