@@ -10,9 +10,10 @@ class Docker implements Serializable{
 def dockerLogin(String dockerHubCred) {
     script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         def name = script.sh(script: 'kubectl get secret | grep secret-reg | awk \'{print $1}\'', returnStdout: true)
+        
         script.sh "echo $name"
 
-        if (name == 'secret-reg') {
+        if (name == "secret-reg") {
             script.sh 'echo secret-reg already found .. '
         } else {
             script.sh '''echo creating secret-reg secret for K8s with dockerHub
