@@ -9,6 +9,8 @@ class Docker implements Serializable{
     }
 def dockerLogin(String dockerHubCred) {
     script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+       
+        script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
         def name = script.sh(script: 'kubectl get secret | grep secret-reg | awk \'{print $1}\'', returnStdout: true).trim()
         
         script.sh "echo $name"
@@ -17,10 +19,10 @@ def dockerLogin(String dockerHubCred) {
             script.sh 'echo secret-reg already found .. '
         } else {
             script.sh "echo creating secret-reg secret for K8s with dockerHub"
-            script.sh "kubectl create secret docker-registry secret-reg \
-            --docker-server=docker.io \
-            --docker-username=samiselim \
-            --docker-password=${script.PASS}"
+            // script.sh "kubectl create secret docker-registry secret-reg \
+            // --docker-server=docker.io \
+            // --docker-username=samiselim \
+            // --docker-password=${script.PASS}"
         }
     }
 }
