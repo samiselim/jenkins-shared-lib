@@ -20,7 +20,7 @@ def dockerLogin(String dockerHubCred) {
         } else {
             script.sh "echo creating my-keysecret for K8s with dockerHub"
             script.sh "kubectl create secret docker-registry my-key\
-            --docker-server=docker.io \
+            --docker-server=https://index.docker.io/v1/ \
             --docker-username=samiselim \
             --docker-password=${script.PASS} \
             --docker-email=samiselim75@gmail.com"
