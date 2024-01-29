@@ -15,7 +15,7 @@ def dockerLogin(String dockerHubCred) {
         
         script.sh "echo $name"
         
-        if (name == "secret-reg") {
+        if (name == "my-key") {
             script.sh 'echo my-keyalready found .. '
         } else {
             script.sh "echo creating my-keysecret for K8s with dockerHub"
