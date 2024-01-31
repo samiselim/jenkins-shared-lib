@@ -11,20 +11,20 @@ def dockerLogin(String dockerHubCred) {
     script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
        
         script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
-        def name = script.sh(script: 'kubectl get secret | grep my-key | awk \'{print $1}\'', returnStdout: true).trim()
+        // def name = script.sh(script: 'kubectl get secret | grep my-key | awk \'{print $1}\'', returnStdout: true).trim()
         
-        script.sh "echo $name"
+        // script.sh "echo $name"
         
-        if (name == "my-key") {
-            script.sh 'echo my-keyalready found .. '
-        } else {
-            script.sh "echo creating my-keysecret for K8s with dockerHub"
-            script.sh "kubectl create secret docker-registry my-key\
-            --docker-server=https://index.docker.io/v1/ \
-            --docker-username=samiselim \
-            --docker-password=${script.PASS} \
-            --docker-email=samiselim75@gmail.com"
-        }
+        // if (name == "my-key") {
+        //     script.sh 'echo my-keyalready found .. '
+        // } else {
+        //     script.sh "echo creating my-keysecret for K8s with dockerHub"
+        //     script.sh "kubectl create secret docker-registry my-key\
+        //     --docker-server=https://index.docker.io/v1/ \
+        //     --docker-username=samiselim \
+        //     --docker-password=${script.PASS} \
+        //     --docker-email=samiselim75@gmail.com"
+        // }
     }
 }
 
