@@ -9,7 +9,8 @@ class Docker implements Serializable{
     }
 def dockerLogin(String dockerHubCred) {
     script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-       
+        sh 'git config --global user.email "jenkins@jenkins.com"'
+        sh 'git config --global user.name "jenkins"'
         script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
         // def name = script.sh(script: 'kubectl get secret | grep my-key | awk \'{print $1}\'', returnStdout: true).trim()
         
