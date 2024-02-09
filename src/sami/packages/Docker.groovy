@@ -50,8 +50,7 @@ class Github implements Serializable{
     def githubLogin(String RepoName , String githubCred){
         script.echo "Logging into github repository"
         script.withCredentials([script.usernamePassword(credentialsId: "${githubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-            script.sh "echo https://${script.USER}:${script.PASS}@github.com/${script.USER}/${RepoName}.git"
-            script.sh "git remote set-url origin2 https://${script.USER}:${script.PASS}@github.com/${script.USER}/${RepoName}.git"
+            script.sh "git remote set-url origin https://${script.USER}:${script.PASS}@github.com/${script.USER}/${RepoName}"
         }
     }
 
@@ -65,7 +64,6 @@ class Github implements Serializable{
         script.sh "git commit -m \"${CommitMessage}\""
     }
     def githubPush(){
-        
-        script.sh "git push origin2 HEAD:${script.BRANCH_NAME}"
+        script.sh "git push origin HEAD:${script.BRANCH_NAME}"
     }
 }
