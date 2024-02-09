@@ -50,7 +50,7 @@ class Github implements Serializable{
     def githubLogin(String repoName , String githubCred){
         script.echo "Logging into github repository"
         script.withCredentials([script.usernamePassword(credentialsId: "${githubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-            script.sh "git remote set-url origin https://${script.USER}:${script.PASS}@github.com/${script.USER}/${repoName}"
+            script.sh "git remote set-url origin https://${script.USER}:${script.PASS}@github.com/${script.USER}/${repoName}.git"
         }
     }
 
