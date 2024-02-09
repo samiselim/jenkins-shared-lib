@@ -64,6 +64,6 @@ class Github implements Serializable{
         script.sh "git commit -m \"${CommitMessage}\""
     }
     def githubPush(){
-        script.sh "git push origin HEAD:${script.BRANCH_NAME}"
+        script.sh "git push origin ${script.BRANCH_NAME}"
     }
 }
