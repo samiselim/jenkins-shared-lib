@@ -11,7 +11,7 @@ def dockerLogin(String dockerHubCred) {
     script.withCredentials([script.usernamePassword(credentialsId: "${dockerHubCred}", passwordVariable: 'PASS', usernameVariable: 'USER')]) {
         script.sh 'git config --global user.email "jenkins@jenkins.com"'
         script.sh 'git config --global user.name "jenkins"'
-        script.sh "echo $script.PASS | sudo docker login -u $script.USER --password-stdin"
+        script.sh "echo $script.PASS | docker login -u $script.USER --password-stdin"
         // def name = script.sh(script: 'kubectl get secret | grep my-key | awk \'{print $1}\'', returnStdout: true).trim()
         
         // script.sh "echo $name"
